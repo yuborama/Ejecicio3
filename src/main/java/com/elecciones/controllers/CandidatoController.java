@@ -10,8 +10,7 @@ import com.elecciones.services.EstamentoService;
 import com.elecciones.services.TipodocumentoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -52,7 +51,20 @@ public class CandidatoController {
         return "cambio";
     }
 
-
+    @PostMapping("/")
+    public String confirmar(@RequestParam("nombre") String nombre,
+                            @RequestParam("email") String email,
+                            @RequestParam("estamento") String estamento,
+                            @RequestParam("proceso") String proceso,
+                            Model modelo){
+        List<Tipodocumento> tdocumentos = tipodocumentoService.findAll();
+        modelo.addAttribute("nombre",nombre);
+        modelo.addAttribute("email",email);
+        modelo.addAttribute("tdocumentos",tdocumentos);
+        modelo.addAttribute("estamento",estamentoService.findOne(Integer.parseInt(estamento)));
+        modelo.addAttribute("proceso",eleccionService.findOne(Integer.parseInt(proceso)));
+        return "elecion";
+    }
 
 
 
