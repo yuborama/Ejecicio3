@@ -24,7 +24,7 @@ public class CandidatoController {
     private final EstamentoService estamentoService;
     private final TipodocumentoService tipodocumentoService;
     private final EleccionService eleccionService;
-    private final CandidatoService candidatoService;
+
     CandidatoController(CandidatoService candidatoService,EstamentoService estamentoService, TipodocumentoService tipodocumentoService,EleccionService eleccionService) {
         this.candidatoService = candidatoService;
         this.estamentoService = estamentoService;
